@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+    body{
+        background-image: url("https://media.gettyimages.com/id/537287305/es/vector/bandera-de-m%C3%A9xico.jpg?s=612x612&w=0&k=20&c=mIhOEn1WA9BvDGABfuvy2y3NNLP3GlWTc5bX-skhZUQ=");
+    }
+    .modalDialogLogin {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialogLogin:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+    .modalDialogLogin > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #3cba86);
+        background: -webkit-linear-gradient(#fff, #3cba86);
+        background: -o-linear-gradient(#fff, #3cba86);
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+    }
+    .modalDialogRegister {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialogRegister:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+    .modalDialogRegister > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #3cba86);
+        background: -webkit-linear-gradient(#fff, #3cba86);
+        background: -o-linear-gradient(#fff, #3cba86);
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+    }
+    .modalDialogMision {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialogMision:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+    .modalDialogMision > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #3cba86);
+        background: -webkit-linear-gradient(#fff, #3cba86);
+        background: -o-linear-gradient(#fff, #3cba86);
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+    }
+    .modalDialogVision {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialogVision:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+    .modalDialogVision > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #3cba86);
+        background: -webkit-linear-gradient(#fff, #3cba86);
+        background: -o-linear-gradient(#fff, #3cba86);
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+    }
+    .modalDialogContactanos {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialogContactanos:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+    .modalDialogContactanos > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #3cba86);
+        background: -webkit-linear-gradient(#fff, #3cba86);
+        background: -o-linear-gradient(#fff, #3cba86);
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+    }
+    .modalDialogProductos {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialogProductos:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+    .modalDialogProductos > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #3cba86);
+        background: -webkit-linear-gradient(#fff, #3cba86);
+        background: -o-linear-gradient(#fff, #3cba86);
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+    }
+    .close {
+        background: #606061;
+        color: #000000;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+    .close:hover { 
+        background: #c70606d5;
+        color: #FFFFFF;
+    }
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+    .con {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
+    #login input {
+        font-family: 'Overpass', sans-serif;
+        font-size: 110%;
+        color: #1b262c;
+        
+        display: block;
+        width: 100%;
+        height: 40px;
+        
+        margin-bottom: 10px;
+        padding: 5px 5px 5px 10px;
+        
+        box-sizing: border-box;
+        
+        border: none;
+        border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+    }
+    #login input::placeholder{
+        font-family: 'Overpass', sans-serif;
+        color: #bebdbd;
+    }
+    #login button {
+        font-family: 'Overpass', sans-serif;
+        font-size: 110%;
+        color:#1b262c;
+        width: 40%;
+        height: 40px;
+        border: none;
+        
+        border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+        
+        background-color: #5da889;
+        
+        margin-top: 10px;
+    }
+    #login button:hover {
+        background-color: #146845;
+        color:#bbe1fa;
+    }
+    #register input{
+        font-family: 'Overpass', sans-serif;
+        font-size: 100%;
+        color: #1b262c;
+
+        display: block;
+        width: 100%;
+        height: 40px;
+
+        margin-bottom: 5px;
+        padding: 1px 1px 1px 2px;
+        
+        box-sizing: border-box;
+        
+        border: none;
+        border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+    }
+    #register input::placeholder{
+        font-family: 'Overpass', sans-serif;
+        color: #bebdbd;
+    }
+    #register button {
+        font-family: 'Overpass', sans-serif;
+        font-size: 100%;
+        font-weight: bold;
+        color:#1b262c;
+        width: 100%;
+        height: 40px;
+        border: none;
+        
+        border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+        
+        background-color: #5da889;
+        
+        margin-top: 5px;
+    }
+    #register button:hover {
+        background-color: #146845;
+        color:#bbe1fa;
+    }
+    .title{
+        color:#ffffff !important;
+        font-weight: bold;
+    }
+    .nav-item a svg{
+        color: white !important;
+    }
+    .navbar a{
+        color:#b8c3ca;
+    }
+    .navbar a:hover{
+        color:#ffffff;
+        font-weight: bold;
+    }
+    summary{
+        display: flex;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg container">
+        <div class="container-fluid" style="background-color: #035131">
+          <a class="navbar-brand title" href="#">El Rincon Enchilado</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#openModalLogin">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#openModalRegister">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#openModalMision">Mison</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#openModalVision">Vison</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#openModalContactanos">Contactanos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#openModalProductos">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
+                    </svg>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" style="text-decoration: none;">
+                    <p><span id="clicks"></span></p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div id="openModalLogin" class="modalDialogLogin">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Login</h2>
+            <div id="login" class="text-center">
+                <form action="" id="">
+                    <div>
+                        <label for="">
+                            
+                            <input type="email" placeholder="Email">
+                        </label>
+                    </div><br>
+                    <div>
+                        <label for="">
+                            
+                            <input type="password" placeholder="Password">
+                        </label>
+                    </div><br>
+                    <a href=""><button>Login</button></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="openModalRegister" class="modalDialogRegister">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Register</h2>
+            <div id="register">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="">
+                                <input type="text" placeholder="Nombre">
+                            </label><br>
+                            <label for="">
+                                <input type="email" placeholder="Email">
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">
+                                <input type="text" placeholder="Apellido">
+                            </label><br>
+                            <label for="">
+                                <input type="password" placeholder="Contraseña">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <a href=""><button>Register</button></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="openModalMision" class="modalDialogMision">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Mision</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi perferendis animi nisi quisquam, voluptatem fugit architecto facere officiis optio adipisci reprehenderit asperiores, eos minus maxime consequatur laborum voluptate tempore est.</p>
+        </div>
+    </div>
+
+    <div id="openModalVision" class="modalDialogVision">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Vision</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus quidem architecto, necessitatibus harum porro corrupti magnam itaque minus, ratione voluptate asperiores dicta optio. Aliquid, dolorem repellat! Tempore nesciunt cum magni?</p>
+        </div>
+    </div>
+
+    <div id="openModalContactanos" class="modalDialogContactanos">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Contactanos</h2>
+            <div>
+                <a href="#" class="con">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/>
+                    </svg>
+                    rinconenchilado
+                </a>
+            </div>
+            <div>
+                <a href="#" class="con">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                    </svg>
+                    +57 312 629 2390
+                </a>
+            </div>
+            <div>
+                <a href="#" class="con">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
+                    </svg>
+                    rinconenchilado
+                </a>
+            </div>
+            <div>
+                <a href="#" class="con">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"/>
+                    </svg>
+                    support@elrinconenchilado.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <a href="#openModalProductos">Productos</a>
+
+    <div id="openModalProductos" class="modalDialogProductos">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <h2>Productos</h2>
+            <div id="" class="text-center">
+                <a class="btn btn-danger"href="javascript:Reset();">Limpiar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col-12">
+                <h1 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: rgb(2, 93, 54);">Nuestros productos</h1>
+                <div class="table-responsive table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="width: 18rem;">
+                                        <img class="card-img-top" src="img/productos/p1.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                          <div class="row">
+                                                <div class="col-sm-5">
+                                                    <h5 class="card-title">Taco Duo</h5>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <details>
+                                                        <summary>Detalles</summary>
+                                                        <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae eos voluptates, explicabo eligendi cumque obcaecati dolorem dolore magni itaque quibusdam, odit ad corrupti ipsa nulla doloremque accusantium aliquam sed.</p>
+                                                      </details>
+                                                </div>
+                                          </div>
+                                          <a class="btn btn-success" href="javascript:clickLink();">Ordenar</a>
+                                          <a class="btn btn-danger"href="javascript:Reset();">Quitar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="width: 18rem;">
+                                        <img class="card-img-top" src="img/productos/p2.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-sm-5">
+                                                <h5 class="card-title">Especial mexicano</h5>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <details>
+                                                    <summary>Detalles</summary>
+                                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae eos voluptates, explicabo eligendi cumque obcaecati dolorem dolore magni itaque quibusdam, odit ad corrupti ipsa nulla doloremque accusantium aliquam sed.</p>
+                                                  </details>
+                                            </div>
+                                          </div>
+                                          <a class="btn btn-success" href="javascript:clickLink2();">Ordenar</a>
+                                          <a class="btn btn-danger"href="javascript:Reset();">Quitar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="width: 18rem;">
+                                        <img class="card-img-top" src="img/productos/p3.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-sm-5">
+                                                <h5 class="card-title">Duo Nachos</h5>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <details>
+                                                    <summary>Detalles</summary>
+                                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae eos voluptates, explicabo eligendi cumque obcaecati dolorem dolore magni itaque quibusdam, odit ad corrupti ipsa nulla doloremque accusantium aliquam sed.</p>
+                                                  </details>
+                                            </div>
+                                          </div>
+                                          <a class="btn btn-success" href="javascript:clickLink3();">Ordenar</a>
+                                          <a class="btn btn-danger"href="javascript:Reset();">Quitar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="width: 18rem;">
+                                        <img class="card-img-top" src="img/productos/p4.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-sm-5">
+                                                <h5 class="card-title">Nachos - Salsa de la casa</h5>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <details>
+                                                    <summary>Detalles</summary>
+                                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae eos voluptates, explicabo eligendi cumque obcaecati dolorem dolore magni itaque quibusdam, odit ad corrupti ipsa nulla doloremque accusantium aliquam sed.</p>
+                                                  </details>
+                                            </div>
+                                          </div>
+                                          <a class="btn btn-success" href="javascript:clickLink4();">Ordenar</a>
+                                          <a class="btn btn-danger"href="javascript:Reset();">Quitar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div style="width: 18rem;">
+                                        <img class="card-img-top" src="img/productos/p5.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-sm-5">
+                                                <h5 class="card-title">Nachos</h5>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <details>
+                                                    <summary>Detalles</summary>
+                                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae eos voluptates, explicabo eligendi cumque obcaecati dolorem dolore magni itaque quibusdam, odit ad corrupti ipsa nulla doloremque accusantium aliquam sed.</p>
+                                                </details>
+                                            </div>
+                                          </div>
+                                          <a class="btn btn-success" href="javascript:clickLink5();">Ordenar</a>
+                                          <a class="btn btn-danger"href="javascript:Reset();">Quitar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="width: 18rem;">
+                                        <img class="card-img-top" src="img/productos/p6.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-sm-5">
+                                                <h5 class="card-title">Tacos</h5>
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <details>
+                                                    <summary>Detalles</summary>
+                                                    <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem vitae eos voluptates, explicabo eligendi cumque obcaecati dolorem dolore magni itaque quibusdam, odit ad corrupti ipsa nulla doloremque accusantium aliquam sed.</p>
+                                                </details>
+                                            </div>
+                                          </div>
+                                          <a class="btn btn-success" href="javascript:clickLink6();">Ordenar</a>
+                                          <a class="btn btn-danger"href="javascript:Reset();">Quitar</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Footer -->
+        <footer class="text-center text-white" style="background-color: #035131">
+          <!-- Grid container -->
+          <div class="container">
+            <!-- Section: Links -->
+            <section class="mt-5">
+              <!-- Grid row-->
+              <div class="row text-center d-flex justify-content-center pt-5">
+    
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" href="#openModalProductos">Productos</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" href="#openModalMision">Misión</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" href="#openModalVision">Visión</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-2">
+                  <h6 class="text-uppercase font-weight-bold">
+                    <a class="nav-link" href="#openModalContactanos">Contactanos</a>
+                  </h6>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!-- Grid row-->
+            </section>
+            <!-- Section: Links -->
+      
+            <hr class="my-5" />
+      
+            <!-- Section: Text -->
+            <section class="mb-1">
+              <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                  <p>
+                    Las mejores enchiladas las encuentras en El Rincon Enchilado 🌶️
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div
+               class="text-center p-3"
+               style="background-color: rgba(3, 41, 24, 0.2)"
+               >
+            © 2022 Copyright:
+            <a class="text-white" href="#" style="text-decoration: none;"
+               >El Rincon Enchilado</a
+              >
+          </div>
+        </footer>
+        </div>
+
+        <script type="text/javascript">
+        
+            var btnElm = document.getElementById('btnClick'),
+                btnClear = document.getElementById('btnClear'),
+                pElm = document.getElementById('contarClick')
+                sect = document.getElementById('sect'),
+                contar = 0;
+            
+            pElm.textContent = 0;
+            
+            btnElm.onclick = function(){
+                contar++;
+                pElm.textContent = contar;
+                sbg();
+            }
+            
+            btnClear.onclick = function(){
+                pElm.textContent = 0;
+                contar = 0;
+            }
+        </script>
+
+    <script type="text/javascript">
+        var i = 0
+        function clickLink() {
+            i++;
+            if (i == 1) {
+                document.getElementById("clicks").innerHTML = i; 
+            }
+            else
+            {
+                document.getElementById("clicks").innerHTML = i;
+            }
+        }
+        function clickLink2() {
+            i++;
+            if (i == 1) {
+                document.getElementById("clicks").innerHTML = i; 
+            }
+            else
+            {
+                document.getElementById("clicks").innerHTML = i;
+            }
+        }
+        function clickLink3() {
+            i++;
+            if (i == 1) {
+                document.getElementById("clicks").innerHTML = i; 
+            }
+            else
+            {
+                document.getElementById("clicks").innerHTML = i;
+            }
+        }
+        function clickLink4() {
+            i++;
+            if (i == 1) {
+                document.getElementById("clicks").innerHTML = i; 
+            }
+            else
+            {
+                document.getElementById("clicks").innerHTML = i;
+            }
+        }
+        function clickLink5() {
+            i++;
+            if (i == 1) {
+                document.getElementById("clicks").innerHTML = i; 
+            }
+            else
+            {
+                document.getElementById("clicks").innerHTML = i;
+            }
+        }
+        function clickLink6() {
+            i++;
+            if (i == 1) {
+                document.getElementById("clicks").innerHTML = i; 
+            }
+            else
+            {
+                document.getElementById("clicks").innerHTML = i;
+            }
+        }
+        function Reset() {
+            i = 0;
+            document.getElementById("clicks").innerHTML = i;
+        }
+        
+    </script>
+</body>
+</html>
